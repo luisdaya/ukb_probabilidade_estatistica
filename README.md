@@ -3,10 +3,10 @@
 </p>
 
 # Calculo de Probabilidade & Estatistica
-* funcionalidade
-## Criação da Tabela de Dados Brutos
-## Criação da Tabela de Frequencia
-## Calculo das Medidas de Posição ou de Tendencia Central
+# * funcionalidade
+* Criação da Tabela de Dados Brutos
+* Criação da Tabela de Frequencia
+* Calculo das Medidas de Posição ou de Tendencia Central
 
 ## Loading
 <p align="center">
@@ -24,14 +24,6 @@
 </p>
 
 ## Calculo
-<p align="center">
-  <img src="screeshot/Captura de Ecrã (296).png" >
-</p>
-
-<p align="center">
-  <img src="screeshot/Captura de Ecrã (297).png" >
-</p>
-
 <p align="center">
   <img src="screeshot/Captura de Ecrã (298).png" >
 </p>
