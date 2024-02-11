@@ -1,0 +1,839 @@
+unit Ubase;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, System.Rtti,
+  FMX.Grid.Style, FMX.Grid, FMX.Edit, FMX.ScrollBox, FMX.Controls.Presentation,
+  FMX.StdCtrls, FMX.Objects, FMX.Layouts, FMX.TabControl,
+  strutils,ioutils,math,
+  system.VarUtils, System.Actions, FMX.ActnList,
+  FMX.Effects, FMX.Filter.Effects;
+
+type
+  TForm3 = class(TForm)
+    TabControl1: TTabControl;
+    TabItem1: TTabItem;
+    Layout1: TLayout;
+    VertScrollBox1: TVertScrollBox;
+    Line1: TLine;
+    Layout2: TLayout;
+    Rectangle1: TRectangle;
+    Layout3: TLayout;
+    Rectangle2: TRectangle;
+    Edit2: TEdit;
+    Layout4: TLayout;
+    StyleBook1: TStyleBook;
+    TabControl2: TTabControl;
+    TabItem2: TTabItem;
+    TabItem3: TTabItem;
+    Rectangle4: TRectangle;
+    Edit1: TEdit;
+    Rectangle5: TRectangle;
+    Label2: TLabel;
+    Label3: TLabel;
+    Rectangle3: TRectangle;
+    Label4: TLabel;
+    ActionList1: TActionList;
+    ca: TChangeTabAction;
+    Layout5: TLayout;
+    Circle1: TCircle;
+    Label5: TLabel;
+    Layout6: TLayout;
+    Label6: TLabel;
+    Image2: TImage;
+    Circle2: TCircle;
+    Image3: TImage;
+    Layout7: TLayout;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Rectangle12: TRectangle;
+    Layout16: TLayout;
+    Label12: TLabel;
+    Layout9: TLayout;
+    Label1: TLabel;
+    Label13: TLabel;
+    Circle3: TCircle;
+    ShadowEffect1: TShadowEffect;
+    Label15: TLabel;
+    Label16: TLabel;
+    TabItem4: TTabItem;
+    Layout11: TLayout;
+    Label11: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Layout12: TLayout;
+    Layout13: TLayout;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Layout17: TLayout;
+    Layout18: TLayout;
+    Label25: TLabel;
+    Label23: TLabel;
+    Image1: TImage;
+    Rectangle7: TRectangle;
+    Layout20: TLayout;
+    Label24: TLabel;
+    Label26: TLabel;
+    Image6: TImage;
+    Circle4: TCircle;
+    ShadowEffect2: TShadowEffect;
+    Image4: TImage;
+    Circle5: TCircle;
+    ShadowEffect3: TShadowEffect;
+    Image5: TImage;
+    Line2: TLine;
+    Line3: TLine;
+    Line4: TLine;
+    TabItem5: TTabItem;
+    Layout10: TLayout;
+    Circle6: TCircle;
+    Image7: TImage;
+    Label14: TLabel;
+    Layout14: TLayout;
+    Image8: TImage;
+    Label27: TLabel;
+    Text1: TText;
+    Text2: TText;
+    Layout15: TLayout;
+    Image9: TImage;
+    Label28: TLabel;
+    Text4: TText;
+    Label29: TLabel;
+    Layout19: TLayout;
+    Layout21: TLayout;
+    Image10: TImage;
+    Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    Label33: TLabel;
+    Label34: TLabel;
+    Label35: TLabel;
+    Label36: TLabel;
+    Label37: TLabel;
+    Label38: TLabel;
+    Label39: TLabel;
+    Layout22: TLayout;
+    Layout23: TLayout;
+    Rectangle6: TRectangle;
+    Rectangle8: TRectangle;
+    Rectangle9: TRectangle;
+    Layout24: TLayout;
+    Rectangle10: TRectangle;
+    Rectangle11: TRectangle;
+    Rectangle13: TRectangle;
+    Label40: TLabel;
+    Layout8: TLayout;
+    Label41: TLabel;
+    Line5: TLine;
+    Lyt_medidas: TLayout;
+    Label42: TLabel;
+    Layout26: TLayout;
+    Label43: TLabel;
+    Label44: TLabel;
+    Label45: TLabel;
+    Label46: TLabel;
+    Label47: TLabel;
+    Label48: TLabel;
+    Label49: TLabel;
+    procedure Rectangle2Click(Sender: TObject);
+    procedure Rectangle3Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Circle1Click(Sender: TObject);
+    procedure Circle2Click(Sender: TObject);
+    procedure Rectangle7Click(Sender: TObject);
+    procedure Rectangle1Click(Sender: TObject);
+    procedure Rectangle12Click(Sender: TObject);
+    procedure Circle6Click(Sender: TObject);
+    procedure Rectangle13MouseEnter(Sender: TObject);
+    procedure Rectangle13MouseLeave(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+  private
+    AColunas,ALinhas,Classe:Integer;
+    TabF:boolean;
+    Matriz: array of array of real;
+    Amplitude,Vmax,vmin:real;
+    Classes:array of string;
+    { Private declarations }
+    procedure Criar_Tabela_De_Dados_Bruto;
+    procedure edtDDBOnChange(sender:Tobject);
+    procedure Matriz_Dos_Dados_Brutos;
+    procedure Classes_e_Amplitude;
+    procedure VmaxVmin;
+    procedure Criar_Tabela_De_Frequencias;
+    procedure classes_e_ponto_medio;
+    procedure frequencia_absoluta;
+    procedure frequencia_absoluta_acomulada;
+    procedure frequencia_relativa;
+    procedure frequencia_relativa_acomulada;
+    procedure Ponto_medio_Fr_Absoluta;
+    procedure Dobro_do_ponto_medio_Fr_Absoluta;
+    procedure Angulo;
+    procedure Media;
+    procedure Mediana;
+    procedure Moda;
+    function Ffrequencia_absoluta(Cmin,Cmax:real):integer;
+    function Total_fa:real;
+    function Total_Frequencia_relativa:real;
+    function Total_xfa:real;
+    function Total_x2fa: real;
+    function Total_angulo: real;
+    function classe_Mediana:integer;
+    function classe_Modal:integer;
+  public
+    { Public declarations }
+    procedure ma(Atabitem:TTabitem;Sender:Tobject);
+    function FAclasse(dado:string):tarray<string>;
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.fmx}
+
+uses Cformulas;
+
+procedure TForm3.Angulo;
+begin
+  for var I := 1 to classe do
+   begin
+     var d:=self.FindComponent('edt_'+i.ToString+'5') as tedit;
+     var f:=self.FindComponent('edt_'+i.ToString+'9') as tedit;
+
+     f.text:=floattostr(d.text.todouble * 360);
+   end;
+
+   var f:=self.FindComponent('edt_'+(classe + 1).ToString+'9') as tedit;
+   f.Text:=floattostr(Total_angulo);
+end;
+
+procedure TForm3.Circle1Click(Sender: TObject);
+begin
+    ma(tabitem2,sender);
+end;
+
+procedure TForm3.Circle2Click(Sender: TObject);
+begin
+   ma(tabitem3,sender);
+end;
+
+procedure TForm3.Circle6Click(Sender: TObject);
+begin
+   ma(TabItem1,Sender);
+end;
+
+procedure TForm3.Classes_e_Amplitude;
+begin
+  Classe:=Fclasse(AColunas*ALinhas);
+  Amplitude:=Famplitude(Vmax,Vmin,classe);
+end;
+
+procedure TForm3.classes_e_ponto_medio;
+begin
+  var p:=vmin;
+  var r:=p;
+  for var I := 1 to classe do
+  begin
+    var d:=self.FindComponent('edt_'+i.tostring+'1') as tedit;
+    var f:=self.FindComponent('edt_'+i.tostring+'2') as tedit;
+    d.Text:='['+p.ToString+',';
+    r:=p;
+    p:=p + Amplitude;
+    r:=(r+p)/2;
+    d.Text:=d.Text + p.ToString+'[';
+    f.Text:=FloatToStr(r);
+  end;
+end;
+
+function TForm3.classe_Modal: integer;
+begin
+   var valor:=(self.FindComponent('edt_13') as tedit).text.todouble;
+   var ind:=1;
+   for var I := 2 to ALinhas do
+   begin  
+     var d:=self.FindComponent('edt_'+i.tostring+'3') as tedit;
+     if valor > d.Text.ToDouble then
+        ind:=ind
+     else
+        ind:=i;
+   end;
+
+   result:=ind;
+end;
+
+function TForm3.classe_Mediana: integer;
+begin
+
+end;
+
+procedure TForm3.Criar_Tabela_De_Dados_Bruto;
+begin
+  if tabf then
+  begin
+    var c:=self.FindComponent('ScrollTabF');
+    c.Free;
+  end;
+
+  if not VarIsEmpty(AColunas) and not VarIsEmpty(Alinhas)  then
+  begin
+    var h:=TScrollBox.Create(self);
+    h.Align:=TAlignLayout.Client;
+    h.Name:='ScrollTabF';
+    h.Parent:=Layout6;
+
+    var l:=tlayout.Create(self);
+    l.Width:=AColunas * (80 + 4);
+    l.Height:=ALinhas * (32 + 4);
+    l.Position.X:=15;
+    l.Position.Y:=0;
+
+    l.Name:='TabelaDeFrequencia';
+    //l.Align:=TAlignLayout.Client;
+    l.Parent:=h;
+
+    for var I := 1 to ALinhas do
+    begin
+      var l1:=tlayout.Create(self);
+      l1.Align:=TAlignLayout.top;
+      l1.Position.Y:=2000;
+      l1.Height:=(32 + 4);
+      if I <> 1 then
+         l1.Margins.top:=-2;
+      l1.Parent:=l;
+
+      for var E := 1 to AColunas do
+      begin
+         var r:=trectangle.Create(self);
+         r.Align:=TAlignLayout.Left;
+         r.Width:=80;
+         r.Fill.Kind:=TBrushKind.None;
+         r.Stroke.Color:=$ff0099ff;
+         r.Stroke.Thickness:=2;
+         r.Padding.Top:=2;
+         r.Padding.Bottom:=2;
+         r.Padding.left:=2;
+         r.Padding.Right:=2;
+         if E <> 1 then
+         r.Margins.Left:=-2;
+         r.Parent:=l1;
+
+
+         var d:=tedit.Create(self);
+         d.Align:=TAlignLayout.Client;
+         d.StyledSettings:=d.StyledSettings - [tStyledSetting.Other];
+         d.TextAlign:=TTextAlign.Center;
+         d.StyleLookup:='Edit1Style1';
+         d.OnChangeTracking:=edtDDBOnChange;
+         d.Name:='edit_'+i.tostring++'_'+E.ToString;
+         d.Parent:=r;
+      end;
+
+    end;
+
+    tabF:=true;
+  end;
+end;
+
+procedure TForm3.Criar_Tabela_De_Frequencias;
+var titulos:tarray<string>;
+begin
+  if tabf then
+  begin
+
+    Lyt_medidas.Parent:=tabitem3;
+    Lyt_medidas.Visible:=false;
+
+    var c:=self.FindComponent('ScrollTabFr');
+    c.Free;
+  end;
+
+  if not VarIsEmpty(classe) and not VarIsEmpty(Amplitude)  then
+  begin
+    var h:=TScrollBox.Create(self);
+    h.Align:=TAlignLayout.Client;
+    h.Name:='ScrollTabFr';
+    h.Parent:=tabitem3;
+
+    var l:=tlayout.Create(self);
+    l.Width:=AColunas * (80 + 4);
+    l.Height:=ALinhas * (32 + 4) + (32*2);
+    l.Position.X:=15;
+    l.Position.Y:=0;
+    l.Name:='TabelaDeFrequencias';
+    //l.Align:=TAlignLayout.Client;
+    l.Parent:=h;
+
+    titulos:=tarray<string>.create('classes','xi','fa','Fa','fr','Fr','xfa','Xfa','ângulo º');
+
+    for var I := 0 to classe+1 do
+    begin
+      var l1:=tlayout.Create(self);
+      l1.Align:=TAlignLayout.top;
+      l1.Position.Y:=2000;
+      l1.Height:=(32 + 4);
+      if I <> 0 then
+         l1.Margins.top:=-2;
+      l1.Parent:=l;
+
+      for var E := 1 to 9 do
+      begin
+         var r:=trectangle.Create(self);
+         r.Align:=TAlignLayout.Left;
+         r.Width:=80;
+         if I <> 0 then
+         r.Fill.Kind:=TBrushKind.None
+         else
+         begin
+           r.Fill.Kind:=TBrushKind.Solid;
+           r.Fill.Color:=$ff0099ff;
+           if (E = 1) or (E = 9) then
+           begin
+             r.YRadius:=15;
+             r.XRadius:=15;
+           end;
+           if E = 1 then
+            r.corners:=r.corners - [Tcorner.TopRight,Tcorner.BottomRight,Tcorner.BottomLeft]
+           else if E = 9 then
+            r.corners:=r.corners - [Tcorner.Topleft,Tcorner.BottomRight,Tcorner.BottomLeft];
+         end;
+
+         r.Stroke.Color:=$ff0099ff;
+         r.Stroke.Thickness:=2;
+         r.Padding.Top:=2;
+         r.Padding.Bottom:=2;
+         r.Padding.left:=2;
+         r.Padding.Right:=2;
+         if E <> 1 then
+         r.Margins.Left:=-2;
+         r.Position.X:=2000;
+         r.Parent:=l1;
+
+         if I = 0 then
+         begin
+           VAR lb:=tlabel.Create(self);
+           lb.StyledSettings:=lb.StyledSettings - [TStyledSetting.Style,TStyledSetting.Other,TStyledSetting.FontColor,TStyledSetting.Size];
+           lb.Align:=TAlignLayout.Client;
+           lb.TextAlign:=TTextAlign.Center;
+           lb.FontColor:=$ffffffff;
+           lb.Font.Size:=18;
+           lb.Font.Style:=lb.Font.Style - [TFontStyle.fsBold];
+           lb.Text:=titulos[E-1];
+           lb.Parent:=r;
+         end
+         else
+         begin
+           var d:=tedit.Create(self);
+           d.Align:=TAlignLayout.Client;
+           d.StyledSettings:=d.StyledSettings - [tStyledSetting.Other];
+           d.TextAlign:=TTextAlign.Center;
+           d.StyleLookup:='Edit1Style1';
+           d.OnChangeTracking:=edtDDBOnChange;
+           d.Name:='edt_'+i.ToString+e.tostring;
+           d.Enabled:=false;
+           d.Parent:=r;
+         end;
+      end;
+
+    end;
+    var d:=self.FindComponent('edt_'+(Classe+1).tostring+'1') as tedit;
+    d.text:='Total';
+
+    tabF:=true;
+
+     var c:=self.FindComponent('ScrollTabFr') as TScrollBox;
+     var r:=self.FindComponent('TabelaDeFrequencias') as Tlayout;
+     c.AddObject(Lyt_medidas);
+
+     Lyt_medidas.Visible:=true;
+     Lyt_medidas.Align:=TAlignLayout.Bottom;
+     //Lyt_medidas.Align:=TAlignLayout.top;
+     //Lyt_medidas.position.y:=r.Position.Y + r.Height + 10000;
+
+
+  end;
+end;
+
+procedure TForm3.Dobro_do_ponto_medio_Fr_Absoluta;
+begin
+   for var I := 1 to classe do
+   begin
+     var d:=self.FindComponent('edt_'+i.ToString+'2') as tedit;
+     var e:=self.FindComponent('edt_'+i.ToString+'7') as tedit;
+     var f:=self.FindComponent('edt_'+i.ToString+'8') as tedit;
+
+     f.text:=floattostr(d.text.todouble * e.Text.todouble);
+   end;
+
+   var f:=self.FindComponent('edt_'+(classe + 1).ToString+'8') as tedit;
+   f.Text:=floattostr(Total_x2fa);
+
+end;
+
+procedure TForm3.edtDDBOnChange(sender: Tobject);
+begin
+  tcontrol(tcontrol(sender).parent).TagString:=tedit(sender).text;
+end;
+
+function TForm3.FAclasse(dado: string): tarray<string>;
+begin
+  dado := dado.Replace('[', '');
+  dado := dado.Replace(']', '');
+
+  result:= SplitString(dado, ',');
+end;
+
+function TForm3.Ffrequencia_absoluta(Cmin, Cmax: real): integer;
+begin
+
+  var co:=0;
+
+  for var E := 0 to length(matriz)-1 do
+  begin
+    for var C := 0 to length(matriz[E])-1 do
+    begin
+      if (matriz[E,C] >= cmin) and (matriz[E,C] < cmax) then
+      begin
+          co:=co + 1;
+      end;
+    end;
+  end;
+
+  result:=co;
+end;
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+  TabControl1.ActiveTab:=TabItem1;
+  TabControl2.ActiveTab:=TabItem4;
+end;
+
+procedure TForm3.FormResize(Sender: TObject);
+begin
+ {  if self.WindowState = TWindowState.wsMaximized then
+   begin
+       Layout19.Padding.Left:=50;
+       Layout19.Padding.right:=50;
+
+       label14.TextAlign:=TTextAlign.Center;
+   end
+   else
+   begin
+      Layout19.Padding.Left:=15;
+      Layout19.Padding.right:=15;
+
+      label14.TextAlign:=TTextAlign.Leading;
+   end;  }
+
+end;
+
+procedure TForm3.frequencia_absoluta;
+begin
+  for var I := 1 to classe do
+  begin
+      var d:=self.FindComponent('edt_'+i.tostring+'1') as tedit;
+      var f:=self.FindComponent('edt_'+i.tostring+'3') as tedit;
+
+      var texto:=d.Text.Replace('[','');
+      texto:=Texto.Replace(']','');
+
+      var a:=SplitString(texto,',');
+
+      f.Text:=Ffrequencia_absoluta(a[0].ToDouble,a[1].ToDouble).tostring;
+  end;
+
+  if classe <> 0 then
+  begin
+    var total:=Total_fa;
+    var f:=self.FindComponent('edt_'+(classe+1).tostring+'3') as tedit;
+    if total <> (Acolunas * Alinhas) then
+    begin
+       f.Text:=' Errado : '+ floattostr(total)+' / Certo :'+(Acolunas * ALinhas).tostring;
+       f.Enabled:=true;
+       f.TextAlign:=TTextAlign.Leading;
+    end
+    else
+      f.Text:=floattostr(total);
+  end;
+end;
+
+procedure TForm3.frequencia_absoluta_acomulada;
+begin
+  for var I := 1 to classe do
+  begin
+    var d:=self.FindComponent('edt_'+i.tostring+'3') as tedit;
+    var f:=self.FindComponent('edt_'+i.tostring+'4') as tedit;
+
+    if i = 1 then
+      f.text:=d.Text
+    else
+    begin
+      f.Text:=(d.Text.ToDouble + (self.FindComponent('edt_'+(i-1).tostring+'4') as tedit).Text.todouble).ToString;
+    end;
+  end;
+end;
+
+procedure TForm3.frequencia_relativa;
+begin
+  for var I := 1 to classe do
+  begin
+      var d:=self.FindComponent('edt_'+i.tostring+'3') as tedit;
+      var f:=self.FindComponent('edt_'+i.tostring+'5') as tedit;
+
+      f.Text:=floattostr(d.Text.ToDouble / (AColunas * Alinhas)).Substring(0,7);
+  end;
+
+  var f:=self.FindComponent('edt_'+(classe + 1).tostring+'5') as tedit;
+  var tfr:=Total_Frequencia_relativa;
+  if ( tfr >= 0.998) or (tfr <= 1.002) then
+    f.Text:=floattostr(tfr)
+  else
+  begin
+    f.Text:='Erro : '+floattostr(tfr);
+    f.Enabled:=true;
+    f.TextAlign:=TTextAlign.Leading;
+  end;
+end;
+
+procedure TForm3.frequencia_relativa_acomulada;
+begin
+   for var I := 1 to classe do
+  begin
+    var d:=self.FindComponent('edt_'+i.tostring+'5') as tedit;
+    var f:=self.FindComponent('edt_'+i.tostring+'6') as tedit;
+
+    if i = 1 then
+      f.text:=d.Text
+    else
+    begin
+      f.Text:=(d.Text.ToDouble + (self.FindComponent('edt_'+(i-1).tostring+'6') as tedit).Text.todouble).ToString;
+    end;
+  end;
+end;
+
+procedure TForm3.ma(Atabitem: TTabitem; Sender: Tobject);
+begin
+  ca.Tab:=Atabitem;
+  ca.ExecuteTarget(Sender);
+end;
+
+procedure TForm3.Rectangle12Click(Sender: TObject);
+begin
+  ma(TabItem5,sender);
+end;
+
+procedure TForm3.Rectangle13MouseEnter(Sender: TObject);
+begin
+   TRectangle(sender).Stroke.Kind:=TBrushKind.Solid;
+end;
+
+procedure TForm3.Rectangle13MouseLeave(Sender: TObject);
+begin
+   TRectangle(sender).Stroke.Kind:=TBrushKind.none;
+   TRectangle(sender).Stroke.Color:=$ff0099ff;
+   TRectangle(sender).Stroke.Thickness:=2;
+end;
+
+procedure TForm3.Rectangle1Click(Sender: TObject);
+begin
+   ma(Tabitem2,sender);
+end;
+
+procedure TForm3.Rectangle2Click(Sender: TObject);
+begin
+    if not edit1.text.IsEmpty and not edit2.text.IsEmpty  then
+    begin
+      AColunas:=strtoint(edit1.text);
+      Alinhas:=strtoint(edit2.text);
+
+      Criar_Tabela_De_Dados_Bruto;
+      label6.Opacity:=1;
+      rectangle3.Visible:=true;
+    end;
+end;
+
+procedure TForm3.Rectangle3Click(Sender: TObject);
+begin
+
+   Matriz_Dos_Dados_Brutos;
+
+   Classes_e_Amplitude;
+
+   { Label de CLasse e Amplitude }
+   label8.Text:=Classe.ToString;
+   label10.Text:=floattostr(Amplitude);
+
+   ma(tabitem3,Sender);
+
+   Criar_Tabela_De_Frequencias;
+
+   classes_e_ponto_medio;
+
+   frequencia_absoluta;
+   frequencia_absoluta_acomulada;
+   frequencia_relativa;
+   frequencia_relativa_acomulada;
+
+   Ponto_medio_Fr_Absoluta;
+   Dobro_do_ponto_medio_Fr_Absoluta;
+   Angulo;
+
+   Media;
+   //Moda;
+   Mediana;
+end;
+
+procedure TForm3.Rectangle7Click(Sender: TObject);
+begin
+    ma(Tabitem4,sender);
+end;
+
+function TForm3.Total_angulo: real;
+begin
+  for var I := 1 to classe do
+  begin
+    var f:=self.FindComponent('edt_'+i.ToString+'9') as tedit;
+    result:=result + f.Text.ToDouble;
+  end;
+end;
+
+function TForm3.Total_fa: real;
+begin
+
+  for var I := 1 to classe do
+  begin
+     var f:=self.FindComponent('edt_'+i.tostring+'3') as tedit;
+     Result:=Result + f.Text.ToDouble;
+  end;
+
+end;
+
+function TForm3.Total_Frequencia_relativa: real;
+begin
+  for var I := 1 to classe do
+  begin
+     var f:=self.FindComponent('edt_'+i.tostring+'5') as tedit;
+     Result:=Result + f.Text.ToDouble;
+  end;
+
+end;
+
+function TForm3.Total_xfa: real;
+begin
+  for var I := 1 to classe do
+  begin
+    var f:=self.FindComponent('edt_'+i.ToString+'7') as tedit;
+    result:=result + f.Text.ToDouble;
+  end;
+end;
+
+function TForm3.Total_x2fa: real;
+begin
+  for var I := 1 to classe do
+  begin
+    var f:=self.FindComponent('edt_'+i.ToString+'8') as tedit;
+    result:=result + f.Text.ToDouble;
+  end;
+end;
+
+procedure TForm3.VmaxVmin;
+begin
+  vmax:=matriz[0,0];
+  vmin:=matriz[0,0];
+
+  for var I := 0 to ALinhas-1 do
+  begin
+     for var E := 0 to AColunas-1 do
+     begin
+        if vmax > matriz[i,e] then
+          vmax:=vmax
+        else
+          vmax:= matriz[i,e];
+
+        if vmin < matriz[i,e] then
+          vmin:=vmin
+        else
+          vmin:= matriz[i,e];
+     end;
+  end;
+
+end;
+
+procedure TForm3.Matriz_Dos_Dados_Brutos;
+begin
+   if Tabf then
+   begin
+     var c:=self.FindComponent('TabelaDeFrequencia') as tlayout;
+     SetLength(matriz,ALinhas,AColunas);
+
+     for var I := 0 to ALinhas-1 do
+     begin
+        if c.Children[I] is Tlayout then
+        begin
+            var c1 := c.Children[I] as tlayout;
+            for var E := 0 to AColunas-1 do
+            begin
+                if c1.Children[E] is Trectangle then
+                begin
+                    var r := c1.Children[E] as TRectangle;
+                    var s:=r.TagString;
+                    var t:=r.TagString;
+                    Matriz[I,E]:=StrToFloat(r.TagString);
+                end;
+             end;
+
+        end;
+     end;
+
+     VmaxVmin;
+   end;
+end;
+
+procedure TForm3.Media;
+begin
+  var d:=self.FindComponent('edt_'+(classe + 1).tostring+'7') as tedit;
+
+  label44.text:=floattostr(Fmedia(d.Text.ToDouble,(AColunas*ALinhas).ToDouble));
+end;
+
+procedure TForm3.Mediana;
+begin
+
+end;
+
+procedure TForm3.Moda;
+begin
+   var indice := classe_Modal;
+
+   var d:=self.FindComponent('edt_'+indice.tostring+'1') as tedit;
+   var f:=self.FindComponent('edt_'+indice.tostring+'3') as tedit;
+   var e:=self.FindComponent('edt_'+(indice - 1).tostring+'3') as tedit;
+   var g:=self.FindComponent('edt_'+(indice + 1).tostring+'3') as tedit;
+
+   var r:=faclasse(d.text);
+
+   label46.Text:=floattostr(fmoda(r[0].todouble,f.Text.ToDouble,e.Text.ToDouble,g.Text.ToDouble,Amplitude));
+end;
+
+procedure TForm3.Ponto_medio_Fr_Absoluta;
+begin
+   for var I := 1 to classe do
+   begin
+     var d:=self.FindComponent('edt_'+i.ToString+'2') as tedit;
+     var e:=self.FindComponent('edt_'+i.ToString+'3') as tedit;
+     var f:=self.FindComponent('edt_'+i.ToString+'7') as tedit;
+
+     f.text:=floattostr(d.text.todouble * e.Text.todouble);
+   end;
+
+   var f:=self.FindComponent('edt_'+(classe + 1).ToString+'7') as tedit;
+   f.Text:=floattostr(Total_xfa);
+end;
+
+end.

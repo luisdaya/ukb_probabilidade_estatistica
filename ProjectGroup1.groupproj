@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6676F4ED-88D5-44E3-9036-2C5C66378880}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ProbEstatisca.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Arredondamento\ArredondamentoV2.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProbEstatisca">
+        <MSBuild Projects="ProbEstatisca.dproj"/>
+    </Target>
+    <Target Name="ProbEstatisca:Clean">
+        <MSBuild Projects="ProbEstatisca.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProbEstatisca:Make">
+        <MSBuild Projects="ProbEstatisca.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArredondamentoV2">
+        <MSBuild Projects="..\..\Arredondamento\ArredondamentoV2.dproj"/>
+    </Target>
+    <Target Name="ArredondamentoV2:Clean">
+        <MSBuild Projects="..\..\Arredondamento\ArredondamentoV2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArredondamentoV2:Make">
+        <MSBuild Projects="..\..\Arredondamento\ArredondamentoV2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProbEstatisca;ArredondamentoV2"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProbEstatisca:Clean;ArredondamentoV2:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProbEstatisca:Make;ArredondamentoV2:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

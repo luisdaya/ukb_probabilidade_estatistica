@@ -1,0 +1,46 @@
+unit Cformulas;
+
+interface
+   uses  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+   strutils,ioutils,math,system.VarUtils,system.Generics.Collections;
+
+   function Fclasse(valor:integer):integer;
+   function Famplitude(valorMax,ValorMin:real;classe:integer;intoudec:boolean=false):real;
+   function Einteiro(valor:real):boolean;
+
+
+implementation
+
+function Fclasse(valor:integer):integer;
+begin
+   if valor <= 50 then
+      Result:=round(Sqrt(valor))
+   else
+      Result:= round(1 + (3.322 * Log10(valor)));
+end;
+
+function Famplitude(valorMax,ValorMin:real;classe:integer;IntOuDec:boolean=false):real;
+begin
+  //Result:=(ValorMax - ValorMin) / Classe;
+  if not IntOuDec then
+  begin
+   result:=round((ValorMax - ValorMin) / Classe)
+  end
+  else
+   result:=trunc((ValorMax - ValorMin) / Classe);
+  
+
+end;
+
+function Einteiro(valor:real):boolean;
+begin
+  
+  try
+     strtoint(floattostr(valor));
+     result:=true;
+  except
+     Result:=false;
+  end;
+end;
+
+end.
