@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="200" src="rec/ukb.ico" >
+  <img width="150" src="rec/ukb.ico" >
 </p>
 
 # Calculo de Probabilidade & Estatistica
