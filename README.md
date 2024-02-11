@@ -1,5 +1,5 @@
-<p class="center">
-  <img width="470" src="rec/ukb.ico" >
+<p align="center">
+  <img width="100" src="rec/ukb.ico" >
 </p>
 
 # Calculo de Probabilidade & Estatistica
@@ -8,7 +8,7 @@
 ### Criação da Tabela de Frequencia
 ### Calculo das Medidas de Posição ou de Tendencia Central
 
-<p class="center">
+<p align="center">
   <img src="/Captura de Ecrã (295).png" >
 </p>
 
