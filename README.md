@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="100" src="rec/ukb.ico" >
+  <img width="200" src="rec/ukb.ico" >
 </p>
 
 # Calculo de Probabilidade & Estatistica
@@ -9,6 +9,6 @@
 ### Calculo das Medidas de Posição ou de Tendencia Central
 
 <p align="center">
-  <img src="/Captura de Ecrã (295).png" >
+  <img src="screeshot/Captura de Ecrã (295).png" >
 </p>
 
